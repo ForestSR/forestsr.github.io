@@ -5,111 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forest | 炫酷个人站</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Sixtyfour&display=swap" rel="stylesheet">
-    <style>
-        /* 动态星空背景 */
-        body {
-            margin: 0;
-            height: 100vh;
-            overflow: hidden;
-            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
-            font-family: 'Orbitron', sans-serif;
-            cursor: none;
-        }
-
-        /* 流星效果容器 */
-        .meteor-container {
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-        }
-
-        /* 单个流星元素 */
-        .meteor {
-            position: absolute;
-            width: 120px;
-            height: 2px;
-            background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
-            transform-origin: left center;
-            animation: meteorFly 1s linear forwards;
-        }
-
-        @keyframes meteorFly {
-            0% { opacity: 1; transform: translateX(0) translateY(0); }
-            100% { opacity: 0; transform: translateX(300px) translateY(150px); }
-        }
-
-        /* 文字动态效果 */
-        .glitch-text {
-            font-family: 'Sixtyfour', cursive;
-            font-size: 3em;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* 卡片式内容区块 */
-        .content-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 800px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* 动态链接效果 */
-        .magic-link {
-            color: #fff;
-            position: relative;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .magic-link:hover {
-            color: #4ecdc4;
-            transform: scale(1.1);
-        }
-
-        .magic-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #4ecdc4;
-            transition: 0.3s;
-        }
-
-        .magic-link:hover::after {
-            width: 100%;
-        }
-
-        /* 烟花画布 */
-        #fireworks {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- 流星容器 -->
-    <div class="meteor-container"></div>
-    
-    <!-- 烟花画布 -->
-    <canvas id="fireworks"></canvas>
+    <!-- 三维粒子背景 -->
+    <div id="particle-canvas"></div>
+
+    <!-- 自定义鼠标指针 -->
+    <div class="custom-cursor">
+        <div class="cursor-core"></div>
+        <div class="cursor-trail"></div>
+    </div>
 
     <!-- 内容区 -->
     <main class="content-card">
@@ -125,7 +31,7 @@
 
         <section>
             <h2 style="font-family: 'Orbitron'; color: #ff6b6b">作品集</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit， minmax(250px， 1fr)); gap: 1rem;">
                 <div class="content-card" style="transition: 0.3s;">
                     <h3>太空计算器</h3>
                     <p>使用Three.js构建的3D交互计算器</p>
@@ -143,71 +49,7 @@
         </section>
     </main>
 
-    <script>
-        // 流星生成逻辑
-        document.addEventListener('mousemove', (e) => {
-            const meteor = document.createElement('div');
-            meteor.className = 'meteor';
-            meteor.style.left = `${e.clientX}px`;
-            meteor.style.top = `${e.clientY}px`;
-            document。querySelector('.meteor-container')。appendChild(meteor);
-            
-            setTimeout(() => meteor。remove()， 1000);
-        });
-
-        // 烟花特效
-        const canvas = document。getElementById('fireworks');
-        const ctx = canvas。getContext('2d');
-        canvas。width = window。innerWidth;
-        canvas。height = window。innerHeight;
-
-        class Particle {
-            constructor(x， y) {
-                this。x = x;
-                this。y = y;
-                this。alpha = 1;
-                this。color = `hsl(${Math。random()*360}, 100%, 50%)`;
-                this。velocity = {
-                    x: (Math。random() - 0.5) * 5，
-                    y: (Math。random() - 0.5) * 5
-                };
-            }
-
-            draw() {
-                ctx。fillStyle = this。color;
-                ctx。globalAlpha = this。alpha;
-                ctx。beginPath();
-                ctx。arc(this。x， this。y， 2， 0， Math。PI*2);
-                ctx。fill();
-            }
-
-            update() {
-                this。x += this。velocity。x;
-                this。y += this。velocity。y;
-                this。alpha -= 0.02;
-            }
-        }
-
-        let particles = [];
-        document。addEventListener('click'， (e) => {
-            for(let i=0; i<50; i++) {
-                particles。push(new Particle(e。clientX， e。clientY));
-            }
-        });
-
-        function animate() {
-            ctx。clearRect(0， 0， canvas。width， canvas。height);
-            particles。forEach((particle， index) => {
-                if(particle。alpha <= 0) {
-                    particles。splice(index， 1);
-                } else {
-                    particle。draw();
-                    particle。update();
-                }
-            });
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
