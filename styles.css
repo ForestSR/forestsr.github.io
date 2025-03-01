@@ -1,22 +1,47 @@
-/* styles.css */
+/* 基础样式 */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial， sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #1a1a1a;
+    color: #fff;
+    overflow-x: hidden;
 }
 
 header {
-    background: #333;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
     color: #fff;
-    padding: 10px 0;
+    padding: 20px 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 header h1 {
     margin: 0;
+    font-size: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+header h1::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #ff0;
+    clip-path: polygon(0 0， 100% 0， 100% 50%， 0 50%);
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
 }
 
 nav ul {
@@ -26,22 +51,33 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ff0;
 }
 
 section {
-    padding: 20px;
+    padding: 40px 20px;
     margin: 20px 0;
+    background: rgba(255， 255， 255， 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0， 0， 0， 0.1);
 }
 
 section h2 {
-    border-bottom: 2px solid #333;
+    border-bottom: 2px solid #ff0;
     padding-bottom: 10px;
+    font-size: 2rem;
 }
 
 footer {
@@ -52,4 +88,43 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+/* 自定义鼠标指针 */
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ff0;
+    border-radius: 50%;
+    position: absolute;
+    pointer-events: none;
+    transform: translate(-50%， -50%);
+    transition: transform 0.1s， background 0.2s;
+    z-index: 1000;
+}
+
+/* 卡片效果 */
+.gallery {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 200px;
+    height: 200px;
+    background: #2575fc;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 1.2rem;
+    transition: transform 0.3s， box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0， 0， 0， 0.2);
 }
