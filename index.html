@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="cursor"></div> <!-- 自定义鼠标指针 -->
     <header>
-        <h1>欢迎来到我的个人网站</h1>
+        <h1 data-text="欢迎来到我的个人网站">欢迎来到我的个人网站</h1>
         <nav>
             <ul>
                 <li><a href="#about">关于我</a></li>
@@ -26,7 +27,11 @@
     <section id="portfolio">
         <h2>作品集</h2>
         <p>这里展示了我的一些作品。你可以点击查看详细信息。</p>
-        <!-- 你可以在这里添加图片或链接 -->
+        <div class="gallery">
+            <div class="card" data-tilt>卡片 1</div>
+            <div class="card" data-tilt>卡片 2</div>
+            <div class="card" data-tilt>卡片 3</div>
+        </div>
     </section>
 
     <section id="contact">
@@ -40,5 +45,8 @@
     <footer>
         <p>&copy; 2025 Forest. 保留所有权利。</p>
     </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
 </body>
 </html>
