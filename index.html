@@ -151,13 +151,13 @@
                     "pointerEvents": "none",
                     "zIndex": "10000000"
                 };
-
+                // 修改粒子生成位置 (在第二个脚本中)
                 this.init = function (x, y, color) {
                     this.velocity = {
-                        x: (Math.random() - 0.5) * 0.3,
-                        y: Math.random() * 0.7 + 0.3
+                    x: (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 5),  // 降低横向速度
+                    y: 0.5  // 降低纵向速度
                     };
-                    this.position = { x: x, y: y };
+                    this.position = { x: x, y: y };  // 移除+10偏移
                     this.element = document.createElement('span');
                     this.element.style.color = color;
                     this.element.innerHTML = this.character;
