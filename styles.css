@@ -5,7 +5,7 @@ body {
     overflow: hidden;
     background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
     font-family: 'Orbitron'， sans-serif;
-    cursor: none;
+    /* 移除 cursor: none */
 }
 
 /* 三维粒子画布 */
