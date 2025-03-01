@@ -3,18 +3,36 @@ const cursor = document。querySelector('.custom-cursor');
 const cursorCore = document。querySelector('.cursor-core');
 const cursorTrail = document。querySelector('.cursor-trail');
 
+// 鼠标移动特效
 document。addEventListener('mousemove'， (e) => {
     cursor。style。transform = `translate(${e。clientX}px, ${e。clientY}px)`;
     cursorCore。style。transform = `translate(${e。clientX}px, ${e。clientY}px)`;
     cursorTrail。style。transform = `translate(${e。clientX}px, ${e。clientY}px)`;
+    
+    // 添加粒子拖尾
+    const trailParticle = document。createElement('div');
+    trailParticle。className = 'trail-particle';
+    trailParticle。style。left = `${e。clientX}px`;
+    trailParticle。style。top = `${e。clientY}px`;
+    document。body。appendChild(trailParticle);
+    setTimeout(() => trailParticle。remove()， 500);
 });
 
-// 点击特效
-document。addEventListener('click'， () => {
-    cursorCore。style。transform += ' scale(1.5)';
+// 点击特效增强
+document。addEventListener('click'， (e) => {
+    // 核心缩放
+    cursorCore。style。transform += ' scale(1.8)';
     setTimeout(() => {
-        cursorCore。style。transform = cursorCore。style。transform。replace(' scale(1.5)'， '');
-    }， 100);
+        cursorCore。style。transform = cursorCore。style。transform。replace(' scale(1.8)'， '');
+    }， 120);
+
+    // 添加波纹效果
+    const ripple = document。createElement('div');
+    ripple。className = 'click-ripple';
+    ripple。style。left = `${e。clientX}px`;
+    ripple。style。top = `${e。clientY}px`;
+    document。body。appendChild(ripple);
+    setTimeout(() => ripple。remove()， 1000);
 });
 
 // 三维粒子背景
