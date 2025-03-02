@@ -12,8 +12,6 @@
     );
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-
 /* 通用样式 */
 .section-header {
     display: flex;
@@ -26,152 +24,46 @@
 .line-deco {
     flex: 1;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #6bd6ff, transparent); /* 颜色与主标题一致 */
+    background: linear-gradient(90deg, transparent, #6bd6ff, transparent);
     margin: 0 10px;
 }
 
-/* 移除之前的波动效果和其他颜色样式 */
 .project-title {
-  /* 确保文字颜色为纯白色 */
-  color: #ffffff;
-  /* 移除背景颜色和动画 */
-  background-image: none;
-  animation: none;
-  /* 其他需要的样式，例如字体大小、居中等 */
-  font-size: 6em; /* 示例字体大小，根据需要调整 */
-  text-align: center; /* 文本居中 */
-  /* 其他样式保持不变 */
-}
-
-/* 如果之前有定义其他相关的动画或颜色样式，也需要移除或覆盖 */
-.project-glitch {
-  /* 移除背景颜色和动画 */
-  background-image: none;
-  animation: none;
-  color: #ffffff; /* 确保文字颜色为纯白色 */
-}
-
-/* 确保其他元素的颜色也调整为纯白色，如果之前有定义其他颜色 */
-.log-entry {
-  color: #ffffff; /* 纯白色 */
-}
-
-/* 根据需要，移除其他特效样式，例如LED指示灯的动画 */
-.led-indicator {
-  animation: none;
-  background-color: #ffffff; /* 纯白色 */
-}
-
-
-
-/* 副标题样式 */
-.project-title {
-    font-family: 'Orbitron', sans-serif;
-    color: #4ecdc4; /* 副标题颜色 */
-    font-size: 1.5em; /* 副标题更小 */
+    color: #ffffff;
+    font-size: 4em;
     text-align: center;
-    text-transform: uppercase;
-    position: relative;
+}
+
+.project-glitch {
+    color: #ffffff;
+}
+
+/* 项目容器 */
+.project-container {
+    min-height: 100vh;
+    padding: 2rem 0;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    padding: 10px;
-    animation: flicker 2s linear infinite;
-}
-
-/* 副标题闪烁效果 */
-@keyframes flicker {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
-}
-
-/* 图标样式 */
-.icon {
-    font-size: 1.2em;
-    margin-right: 10px;
-}
-
-/* 导航栏增强 */
-.project-nav {
-    padding: 1.5rem 3rem;
-    backdrop-filter: blur(10px);
-    background: rgba(0, 0, 0, 0.7);
-    border-bottom: 2px solid #6bd6ff; /* 颜色与主标题一致 */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-}
-
-.home-link {
-    position: relative;
-    padding: 0.8rem 1.5rem;
-    border: 1px solid #6bd6ff; /* 颜色与主标题一致 */
-    border-radius: 30px;
-    transition: all 0.3s;
-    color: #fff;
-    text-decoration: none;
-    display: inline-block;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.5); /* 添加背景色 */
-}
-
-.hover-glow {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, 
-        rgba(107, 214, 255, 0.4) 0%, 
-        transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s;
-    top: 0;
-    left: 0;
-    z-index: 1; /* 确保光效在按钮上方 */
-    pointer-events: none; /* 防止光效干扰点击 */
-}
-
-.home-link:hover .hover-glow {
-    opacity: 1;
-}
-
-.neon-arrow {
-    margin-right: 0.5rem;
-    transition: transform 0.3s;
-    position: relative;
-    z-index: 2; /* 确保箭头在光效上方 */
-}
-
-.link-text {
-    position: relative;
-    z-index: 2; /* 确保文字在光效上方 */
-}
-
-.home-link:hover .neon-arrow {
-    transform: translateX(-5px);
 }
 
 /* 实时演示区 */
 .upload-zone {
-    border: 2px dashed #6bd6ff; /* 颜色与主标题一致 */
+    border: 2px dashed #6bd6ff;
     border-radius: 15px;
     height: 200px;
     position: relative;
     overflow: hidden;
     transition: all 0.3s;
     background: rgba(255,255,255,0.05);
-    cursor: pointer; /* 添加光标提示 */
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .upload-zone:hover {
-    background: rgba(107, 214, 255, 0.1); /* 颜色与主标题一致 */
+    background: rgba(107, 214, 255, 0.1);
     transform: translateY(-3px);
 }
 
@@ -185,14 +77,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto; /* 水平居中 */
+    margin: 2rem auto;
     max-width: 80%;
-    max-height: 60vh;
+    max-height: 70vh;
     overflow: hidden;
     border-radius: 15px;
-    border: 2px solid #6bd6ff; /* 颜色与主标题一致 */
+    border: 2px solid #6bd6ff;
     background: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 20px rgba(107, 214, 255, 0.5); /* 颜色与主标题一致 */
+    box-shadow: 0 0 20px rgba(107, 214, 255, 0.5);
     position: relative;
 }
 
@@ -200,12 +92,18 @@
     max-width: 100%;
     max-height: 100%;
     display: block;
-    transition: transform 0.3s;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-radius: 15px;
-    transform-origin: center center; /* 设置缩放中心为图片中心 */
-    object-fit: contain; /* 确保图片在容器内完全显示 */
+    transform-origin: center center;
+    object-fit: contain;
+    cursor: grab;
 }
 
+#preview-image:active {
+    cursor: grabbing;
+}
+
+/* 控制按钮 */
 .image-controls {
     position: absolute;
     bottom: 1rem;
@@ -216,36 +114,48 @@
 
 .ctrl-btn {
     background: rgba(0, 0, 0, 0.7);
-    border: 1px solid #6bd6ff; /* 颜色与主标题一致 */
+    border: 1px solid #6bd6ff;
     color: #fff;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s;
-    opacity: 0.5;
-    cursor: not-allowed;
-    background: rgba(0, 0, 0, 0.5);
-    border-color: #666;
 }
 
 .ctrl-btn:hover {
-    background: #6bd6ff; /* 颜色与主标题一致 */
+    background: #6bd6ff;
     color: #000;
+}
+
+/* 清除按钮 */
+#clear-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 0.8rem !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    background: rgba(255, 50, 50, 0.7) !important;
+    border: none !important;
+}
+
+#clear-btn:hover {
+    background: #ff3232 !important;
 }
 
 /* 悬浮控制台 */
 .console-panel {
     position: fixed;
     bottom: 2rem;
-    left: 2rem; /* 从 right 改为 left */
+    left: 2rem;
     width: 300px;
     background: rgba(0,0,0,0.8);
-    border: 1px solid #6bd6ff; /* 颜色与主标题一致 */
+    border: 1px solid #6bd6ff;
     border-radius: 10px;
     font-family: 'Courier New', monospace;
     color: #fff;
     padding: 1rem;
-    z-index: 1000; /* 确保控制台在最上层 */
+    z-index: 1000;
 }
 
 .console-header {
@@ -258,7 +168,7 @@
 .led-indicator {
     width: 12px;
     height: 12px;
-    background: #6bd6ff; /* 颜色与主标题一致 */
+    background: #6bd6ff;
     border-radius: 50%;
     animation: led-pulse 1s infinite;
 }
@@ -270,10 +180,70 @@
 
 .log-entry {
     margin: 0.5rem 0;
-    color: #6bd6ff; /* 颜色与主标题一致 */
+    color: #6bd6ff;
 }
 
-/* 隐藏默认的文件输入框 */
+/* 隐藏默认文件输入 */
 #image-upload {
     display: none;
+}
+
+/* 导航栏增强 */
+.project-nav {
+    padding: 1.5rem 3rem;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.7);
+    border-bottom: 2px solid #6bd6ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.home-link {
+    position: relative;
+    padding: 0.8rem 1.5rem;
+    border: 1px solid #6bd6ff;
+    border-radius: 30px;
+    transition: all 0.3s;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hover-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, 
+        rgba(107, 214, 255, 0.4) 0%, 
+        transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.home-link:hover .hover-glow {
+    opacity: 1;
+}
+
+.neon-arrow {
+    margin-right: 0.5rem;
+    transition: transform 0.3s;
+    position: relative;
+    z-index: 2;
+}
+
+.link-text {
+    position: relative;
+    z-index: 2;
+}
+
+.home-link:hover .neon-arrow {
+    transform: translateX(-5px);
 }
