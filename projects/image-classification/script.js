@@ -1,7 +1,7 @@
 // 图片缩放控制
 let scale = 1;
-const minScale = 0.1; // 最小缩放比例
-const maxScale = 3; // 最大缩放比例
+const minScale = 0.5;
+const maxScale = 3;
 
 function zoomIn() {
     if (scale < maxScale) {
@@ -38,7 +38,7 @@ function handleImageUpload(e) {
         const img = document.getElementById('preview-image');
         img.src = event.target.result;
         document.querySelector('.upload-zone').style.display = 'none';
-        document.querySelector('.image-preview').style.display = 'flex'; /* 使用 flex 布局 */
+        document.querySelector('.image-preview').style.display = 'block';
         document.getElementById('upload-status').textContent = '[INFO] 图片上传成功';
         resetZoom();
     }
