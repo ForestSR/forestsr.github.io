@@ -14,46 +14,92 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
-/* 添加炫酷的文字效果 */
+/* 标题容器样式 */
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.line-deco {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #4ecdc4, transparent);
+    margin: 0 10px;
+}
+
+/* 标题文字样式 */
 .project-title {
-  font-family: 'Orbitron', sans-serif;
-  color: #4ecdc4;
-  font-size: 2em;
-  text-align: center; /* 这将确保文字在元素内居中 */
-  text-transform: uppercase;
-  position: relative;
-  overflow: hidden;
-  display: flex; /* 使用flex布局 */
-  justify-content: center; /* 确保flex子项在主轴上居中 */
-  align-items: center; /* 确保flex子项在交叉轴上居中 */
-  padding: 10px;
+    font-family: 'Orbitron', sans-serif;
+    color: #4ecdc4;
+    font-size: 2.5em; /* 比 h2 稍大 */
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
 }
 
 .project-title span {
-  position: relative;
-  display: inline-block;
-  padding: 0 5px;
+    position: relative;
+    display: inline-block;
+    padding: 0 5px;
 }
 
-.project-title span::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: #000;
-  mix-blend-mode: color-dodge;
-  animation: flicker 2s linear infinite;
+/* 故障效果 */
+.project-title::before,
+.project-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #4ecdc4;
+    overflow: hidden;
 }
 
-@keyframes flicker {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+.project-title::before {
+    left: -2px;
+    text-shadow: 2px 0 #ff00ff;
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+
+.project-title::after {
+    left: 2px;
+    text-shadow: -2px 0 #00ffff;
+    animation: glitch-anim 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip-path: inset(0 0 0 0);
+    }
+    20% {
+        clip-path: inset(20% 0 10% 0);
+    }
+    40% {
+        clip-path: inset(40% 0 30% 0);
+    }
+    60% {
+        clip-path: inset(60% 0 50% 0);
+    }
+    80% {
+        clip-path: inset(80% 0 70% 0);
+    }
+    100% {
+        clip-path: inset(100% 0 90% 0);
+    }
+}
+
+/* 图标样式 */
+.icon {
+    font-size: 1.2em;
+    margin-right: 10px;
 }
 
 /* 导航栏增强 */
