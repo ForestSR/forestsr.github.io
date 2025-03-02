@@ -1,38 +1,3 @@
-// 图片缩放控制
-let scale = 1;
-const minScale = 0.1;
-const maxScale = 3;
-
-function zoomIn() {
-    if (scale < maxScale) {
-        scale += 0.1;
-        updateImageScale();
-    } else {
-        document.getElementById('upload-status').textContent = '[INFO] 已达到最大缩放比例';
-    }
-}
-
-function zoomOut() {
-    if (scale > minScale) {
-        scale -= 0.1;
-        updateImageScale();
-    } else {
-        document.getElementById('upload-status').textContent = '[INFO] 已达到最小缩放比例';
-    }
-}
-
-function updateImageScale() {
-    const img = document.getElementById('preview-image');
-    img.style.transform = `scale(${scale})`;
-    document.getElementById('upload-status').textContent = `[INFO] 当前缩放: ${(scale * 100).toFixed(1)}%`;
-}
-
-function resetZoom() {
-    scale = 1;
-    updateImageScale();
-}
-
-// 图片上传处理
 function handleImageUpload(e) {
     const file = e.target.files[0];
     if (!file || !file.type.startsWith('image/')) {
@@ -74,8 +39,11 @@ function handleImageUpload(e) {
 
             // 页面滚动到图片预览区域
             const imagePreview = document.querySelector('.image-preview');
-            const imagePreviewTop = imagePreview.getBoundingClientRect().top;
-            const scrollOffset = window.scrollY + imagePreviewTop - (window.innerHeight / 2); // 计算滚动位置
+            const imagePreviewRect = imagePreview.getBoundingClientRect();
+            const imagePreviewCenter = imagePreviewRect.top + imagePreviewRect.height / 2; // 图片预览区域的中心位置
+            const windowCenter = window.innerHeight / 2; // 窗口的中心位置
+            const scrollOffset = window.scrollY + imagePreviewCenter - windowCenter; // 计算滚动距离
+
             window.scrollTo({
                 top: scrollOffset,
                 behavior: 'smooth' // 平滑滚动
@@ -84,26 +52,3 @@ function handleImageUpload(e) {
     };
     reader.readAsDataURL(file);
 }
-
-// 初始化
-document.addEventListener('DOMContentLoaded', () => {
-    const uploadZone = document.querySelector('.upload-zone');
-    const input = document.querySelector('#image-upload');
-    const zoomInBtn = document.getElementById('zoom-in');
-    const zoomOutBtn = document.getElementById('zoom-out');
-    const resetBtn = document.getElementById('reset');
-
-    // 点击上传区域触发文件选择
-    uploadZone.addEventListener('click', () => input.click());
-
-    // 文件选择事件
-    input.addEventListener('change', handleImageUpload);
-
-    // 缩放按钮事件
-    zoomInBtn.addEventListener('click', zoomIn);
-    zoomOutBtn.addEventListener('click', zoomOut);
-    resetBtn.addEventListener('click', resetZoom);
-
-    // 初始化时隐藏图片预览区域
-    document.querySelector('.image-preview').style.display = 'none';
-});
