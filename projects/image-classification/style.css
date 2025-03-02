@@ -97,7 +97,8 @@
 .console-panel {
     position: fixed;
     bottom: 2rem;
-    right: 2rem;
+    left: 2rem;
+    right: auto;
     width: 300px;
     background: rgba(0,0,0,0.8);
     border: 1px solid #4ecdc4;
