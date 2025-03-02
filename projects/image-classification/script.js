@@ -1,6 +1,6 @@
 // 图片缩放控制
 let scale = 1;
-const minScale = 0.1;
+const minScale = 0.5;
 const maxScale = 3;
 
 function zoomIn() {
