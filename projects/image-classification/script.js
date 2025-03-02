@@ -23,24 +23,8 @@ function zoomOut() {
 
 function updateImageScale() {
     const img = document.getElementById('preview-image');
-    const container = document.querySelector('.upload-zone');
-
-    // 计算图片和容器的中心点
-    const containerRect = container.getBoundingClientRect();
-    const imgRect = img.getBoundingClientRect();
-    
-    const offsetX = (containerRect.width - imgRect.width * scale) / 2;
-    const offsetY = (containerRect.height - imgRect.height * scale) / 2;
-
-    // 应用缩放和偏移
-    img.style.transform = `
-        translate(${offsetX}px, ${offsetY}px)
-        scale(${scale})
-    `;
-
-    // 更新控制台信息
-    document.getElementById('upload-status').textContent =
-        `[INFO] 当前缩放: ${(scale * 100).toFixed(1)}%`;
+    img.style.transform = `scale(${scale})`;
+    document.getElementById('upload-status').textContent = `[INFO] 当前缩放: ${(scale * 100).toFixed(1)}%`;
 }
 
 function resetZoom() {
@@ -60,16 +44,11 @@ function handleImageUpload(e) {
     reader.onload = function(event) {
         const img = document.getElementById('preview-image');
         img.src = event.target.result;
-        img.style.display = 'block';
         document.querySelector('.upload-zone').style.display = 'none';
-        document.querySelector('.image-preview').style.display = 'flex';
+        document.querySelector('.image-preview').style.display = 'flex'; /* 使用 flex 布局 */
         document.getElementById('upload-status').textContent = '[INFO] 图片上传成功';
         resetZoom();
     }
-    reader.onerror = function(error) {
-        console.error('文件读取失败:', error); // 调试
-        document.getElementById('upload-status').textContent = '[ERROR] 文件读取失败';
-    };
     reader.readAsDataURL(file);
 }
 
