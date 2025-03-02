@@ -74,11 +74,8 @@ function handleImageUpload(e) {
 
             // 页面滚动到图片预览区域
             const imagePreview = document.querySelector('.image-preview');
-            const imagePreviewRect = imagePreview.getBoundingClientRect();
-            const imagePreviewCenter = imagePreviewRect.top + imagePreviewRect.height / 2; // 图片预览区域的中心位置
-            const windowCenter = window.innerHeight / 2; // 窗口的中心位置
-            const scrollOffset = window.scrollY + imagePreviewCenter - windowCenter; // 计算滚动距离
-
+            const imagePreviewTop = imagePreview.getBoundingClientRect().top;
+            const scrollOffset = window.scrollY + imagePreviewTop - (window.innerHeight / 2); // 计算滚动位置
             window.scrollTo({
                 top: scrollOffset,
                 behavior: 'smooth' // 平滑滚动
