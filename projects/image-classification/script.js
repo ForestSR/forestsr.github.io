@@ -44,11 +44,35 @@ function handleImageUpload(e) {
     reader.onload = function(event) {
         const img = document.getElementById('preview-image');
         img.src = event.target.result;
+
+        // 隐藏上传区域，显示图片预览区域
         document.querySelector('.upload-zone').style.display = 'none';
-        document.querySelector('.image-preview').style.display = 'flex'; /* 使用 flex 布局 */
-        document.getElementById('upload-status').textContent = '[INFO] 图片上传成功';
+        document.querySelector('.image-preview').style.display = 'flex';
+
+        // 重置缩放比例
         resetZoom();
-    }
+
+        // 调整图片尺寸以适应容器
+        img.onload = function() {
+            const container = document.querySelector('.image-preview');
+            const containerWidth = container.clientWidth;
+            const containerHeight = container.clientHeight;
+            const imgWidth = img.naturalWidth;
+            const imgHeight = img.naturalHeight;
+
+            // 计算适合容器的比例
+            const widthRatio = containerWidth / imgWidth;
+            const heightRatio = containerHeight / imgHeight;
+            const scaleRatio = Math.min(widthRatio, heightRatio);
+
+            // 设置图片初始尺寸
+            img.style.width = `${imgWidth * scaleRatio}px`;
+            img.style.height = `${imgHeight * scaleRatio}px`;
+
+            // 更新日志
+            document.getElementById('upload-status').textContent = '[INFO] 图片上传成功';
+        };
+    };
     reader.readAsDataURL(file);
 }
 
@@ -60,9 +84,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const zoomOutBtn = document.getElementById('zoom-out');
     const resetBtn = document.getElementById('reset');
 
+    // 点击上传区域触发文件选择
     uploadZone.addEventListener('click', () => input.click());
+
+    // 文件选择事件
     input.addEventListener('change', handleImageUpload);
+
+    // 缩放按钮事件
     zoomInBtn.addEventListener('click', zoomIn);
     zoomOutBtn.addEventListener('click', zoomOut);
     resetBtn.addEventListener('click', resetZoom);
+
+    // 初始化时隐藏图片预览区域
+    document.querySelector('.image-preview').style.display = 'none';
 });
