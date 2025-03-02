@@ -30,51 +30,38 @@
     margin: 0 10px;
 }
 
-/* 暗彩色微微波动效果的样式 */
+/* 移除之前的波动效果和其他颜色样式 */
+.project-title {
+  /* 确保文字颜色为纯白色 */
+  color: #ffffff;
+  /* 移除背景颜色和动画 */
+  background-image: none;
+  animation: none;
+  /* 其他需要的样式，例如字体大小、居中等 */
+  font-size: 2em; /* 示例字体大小，根据需要调整 */
+  text-align: center; /* 文本居中 */
+  /* 其他样式保持不变 */
+}
+
+/* 如果之前有定义其他相关的动画或颜色样式，也需要移除或覆盖 */
 .project-glitch {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 3em; /* 标题字体大小 */
-  text-align: center;
-  text-transform: uppercase;
-  position: relative;
-  display: inline-block;
-  padding: 10px;
-  background-image: linear-gradient(45deg, 
-    #ff0080, #3300ff, #00ff00, #ffff00, #ff0000); /* 更大范围的颜色变化 */
-  background-size: 200% 200%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent; /* 使文字颜色透明，露出背景 */
-  animation: subtleWave 5s ease-in-out infinite; /* 微微波动效果 */
+  /* 移除背景颜色和动画 */
+  background-image: none;
+  animation: none;
+  color: #ffffff; /* 确保文字颜色为纯白色 */
 }
 
-/* 微微波动背景效果的关键帧 */
-@keyframes subtleWave {
-  0%, 100% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-}
-/* 文字上下波动效果的样式 */
-.text-wobble {
-  font-size: 3em; /* 可以根据需要调整字体大小 */
-  text-align: center;
-  display: inline-block;
-  position: relative;
-  animation: wobble 3s infinite ease-in-out; /* 应用动画，持续时间为3秒，无限循环，缓动效果 */
+/* 确保其他元素的颜色也调整为纯白色，如果之前有定义其他颜色 */
+.log-entry {
+  color: #ffffff; /* 纯白色 */
 }
 
-/* 定义文字上下波动的关键帧 */
-@keyframes wobble {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px); /* 在动画的一半时向下移动10px */
-  }
+/* 根据需要，移除其他特效样式，例如LED指示灯的动画 */
+.led-indicator {
+  animation: none;
+  background-color: #ffffff; /* 纯白色 */
 }
+
 
 
 /* 副标题样式 */
