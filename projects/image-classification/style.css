@@ -109,6 +109,8 @@
     border: 2px solid #4ecdc4;
     background: rgba(0, 0, 0, 0.5); /* 添加背景色 */
     box-shadow: 0 0 20px rgba(78, 205, 196, 0.5); /* 添加发光效果 */
+    margin-left: auto;
+    margin-right: auto; /* 居中显示 */
 }
 
 #preview-image {
@@ -117,6 +119,7 @@
     display: block;
     transition: transform 0.3s;
     border-radius: 15px; /* 圆角 */
+    transform-origin: center center; /* 缩放中心点 */
 }
 
 .image-controls {
