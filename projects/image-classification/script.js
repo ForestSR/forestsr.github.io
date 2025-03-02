@@ -6,20 +6,26 @@ const maxScale = 3;
 function zoomIn() {
     if (scale < maxScale) {
         scale += 0.1;
-        document.getElementById('preview-image').style.transform = `scale(${scale})`;
+        updateImageScale();
     }
 }
 
 function zoomOut() {
     if (scale > minScale) {
         scale -= 0.1;
-        document.getElementById('preview-image').style.transform = `scale(${scale})`;
+        updateImageScale();
     }
 }
 
 function resetZoom() {
     scale = 1;
-    document.getElementById('preview-image').style.transform = `scale(${scale})`;
+    updateImageScale();
+}
+
+function updateImageScale() {
+    const img = document.getElementById('preview-image');
+    img.style.transform = `scale(${scale})`;
+    document.getElementById('upload-status').textContent = `[INFO] 当前缩放: ${Math.round(scale * 100)}%`;
 }
 
 // 图片上传处理
