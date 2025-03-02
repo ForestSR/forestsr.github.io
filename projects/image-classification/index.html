@@ -33,41 +33,45 @@
     </nav>
 
     <!-- 项目主内容 -->
-    <main class="project-container">
-        <!-- 全息标题 -->
-        <h1 class="project-glitch" data-text="图像分类系统">图像分类系统</h1>
-        
-        <!-- 动态演示 -->
-        <section class="live-demo">
-            <div class="section-header">
-                <div class="line-deco"></div>
-                <h2><span class="icon">🎮</span>实时演示</h2>
-                <div class="line-deco"></div>
-            </div>
+<main class="project-container">
+    <!-- 全息标题 -->
+    <h1 class="project-glitch" data-text="图像分类系统">图像分类系统</h1>
+    
+    <!-- 动态演示 -->
+    <section class="live-demo">
+        <div class="section-header">
+            <div class="line-deco"></div>
+            <h2 class="project-title">
+                <span class="icon">🎮</span>
+                <span>实时</span>
+                <span>演示</span>
+            </h2>
+            <div class="line-deco"></div>
+        </div>
 
-            <div class="demo-container">
-                <!-- 交互演示区 -->
-                <div class="demo-panel">
-                    <div class="upload-zone">
-                        <div class="upload-overlay">
-                            <div class="upload-icon">🖼️</div>
-                            <p>拖放图片或点击上传</p>
-                        </div>
-                        <input type="file" id="image-upload" accept="image/*">
+        <div class="demo-container">
+            <!-- 交互演示区 -->
+            <div class="demo-panel">
+                <div class="upload-zone">
+                    <div class="upload-overlay">
+                        <div class="upload-icon">🖼️</div>
+                        <p>拖放图片或点击上传</p>
                     </div>
-                    
-                    <div class="image-preview">
-                        <img id="preview-image" src="#" alt="预览图片">
-                        <div class="image-controls">
-                            <button class="ctrl-btn" id="zoom-in">+</button>
-                            <button class="ctrl-btn" id="zoom-out">-</button>
-                            <button class="ctrl-btn" id="reset">↺</button>
-                        </div>
+                    <input type="file" id="image-upload" accept="image/*">
+                </div>
+                
+                <div class="image-preview">
+                    <img id="preview-image" src="#" alt="预览图片">
+                    <div class="image-controls">
+                        <button class="ctrl-btn" id="zoom-in">+</button>
+                        <button class="ctrl-btn" id="zoom-out">-</button>
+                        <button class="ctrl-btn" id="reset">↺</button>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 
     <!-- 悬浮控制台 -->
     <div class="console-panel">
