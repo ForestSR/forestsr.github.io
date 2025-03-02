@@ -88,19 +88,19 @@ body {
 }
 
 .content-card h3 {
-font-family: 'Orbitron', sans-serif;
-color: #4ecdc4;
-font-size: 1.5em;
-text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+    font-family: 'Orbitron', sans-serif;
+    color: #4ecdc4;
+    font-size: 1.5em;
+    text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
 }
 
-        .content-card p {
-color: rgba(255, 255, 255, 0.9);
-line-height: 1.6;
-        }
+.content-card p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
 
-        /* 动态链接效果 */
-        .magic-link {
+/* 动态链接效果 */
+.magic-link {
     color: #fff;
     position: relative;
     text-decoration: none;
@@ -169,7 +169,7 @@ line-height: 1.6;
     height: 100%;
     background: radial-gradient(circle,
             rgba(255, 255, 255, 0.05) 10%,
-    transparent 20%
+            transparent 20%
     );
     animation: stars 20s linear infinite;
 }
@@ -177,4 +177,67 @@ line-height: 1.6;
 @keyframes stars {
     from { transform: translateY(0); }
     到 { transform: translateY(-100%); }
+}
+
+/* 作品集网格布局 */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+/* 项目卡片 */
+.project-card {
+    display: block;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    background: rgba(78, 205, 196, 0.15);
+    box-shadow: 0 8px 32px rgba(255, 107, 107, 0.2);
+}
+
+.project-content {
+    position: relative;
+    color: #fff;
+}
+
+/* 项目标签 */
+.project-tags {
+    margin: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-tags span {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9em;
+    color: #4ecdc4;
+    border: 1px solid #4ecdc455;
+}
+
+/* 项目标题 */
+.project-content h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #ff6b6b;
+    margin-bottom: 1rem;
+    font-size: 1.4em;
+    text-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+}
+
+/* 项目描述 */
+.project-content p {
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95em;
 }
