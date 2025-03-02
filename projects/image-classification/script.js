@@ -71,6 +71,15 @@ function handleImageUpload(e) {
 
             // 更新日志
             document.getElementById('upload-status').textContent = '[INFO] 图片上传成功';
+
+            // 页面滚动到图片预览区域
+            const imagePreview = document.querySelector('.image-preview');
+            const imagePreviewTop = imagePreview.getBoundingClientRect().top;
+            const scrollOffset = window.scrollY + imagePreviewTop - (window.innerHeight / 2); // 计算滚动位置
+            window.scrollTo({
+                top: scrollOffset,
+                behavior: 'smooth' // 平滑滚动
+            });
         };
     };
     reader.readAsDataURL(file);
