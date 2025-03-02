@@ -14,7 +14,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
-/* 标题容器样式 */
+/* 通用样式 */
 .section-header {
     display: flex;
     align-items: center;
@@ -30,29 +30,32 @@
     margin: 0 10px;
 }
 
-/* 标题文字样式 */
-.project-title {
+/* 主标题样式 */
+.project-glitch {
     font-family: 'Orbitron', sans-serif;
     color: #4ecdc4;
-    font-size: 2.5em; /* 比 h2 稍大 */
+    font-size: 3em; /* 主标题更大 */
     text-align: center;
     text-transform: uppercase;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-}
-
-.project-title span {
-    position: relative;
     display: inline-block;
-    padding: 0 5px;
+    padding: 10px;
+    animation: glow 2s infinite alternate;
 }
 
-/* 故障效果 */
-.project-title::before,
-.project-title::after {
+/* 主标题动态效果 */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #4ecdc4, 0 0 10px #4ecdc4, 0 0 20px #4ecdc4;
+    }
+    100% {
+        text-shadow: 0 0 10px #4ecdc4, 0 0 20px #4ecdc4, 0 0 30px #4ecdc4;
+    }
+}
+
+/* 主标题故障效果 */
+.project-glitch::before,
+.project-glitch::after {
     content: attr(data-text);
     position: absolute;
     top: 0;
@@ -63,13 +66,13 @@
     overflow: hidden;
 }
 
-.project-title::before {
+.project-glitch::before {
     left: -2px;
     text-shadow: 2px 0 #ff00ff;
     animation: glitch-anim 2s infinite linear alternate-reverse;
 }
 
-.project-title::after {
+.project-glitch::after {
     left: 2px;
     text-shadow: -2px 0 #00ffff;
     animation: glitch-anim 1s infinite linear alternate-reverse;
@@ -93,6 +96,31 @@
     }
     100% {
         clip-path: inset(100% 0 90% 0);
+    }
+}
+
+/* 副标题样式 */
+.project-title {
+    font-family: 'Orbitron', sans-serif;
+    color: #4ecdc4;
+    font-size: 1.5em; /* 副标题更小 */
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    animation: flicker 2s linear infinite;
+}
+
+/* 副标题动态效果 */
+@keyframes flicker {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
     }
 }
 
