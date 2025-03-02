@@ -1,50 +1,98 @@
-<!DOCTYPE html>
+<!
+DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon"href="images/favicon.ico"type="image/x-icon">
+    <link rel="shortcut icon"href="images/favicon.ico"type="image/x-icon">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forest | 个人网站</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Sixtyfour&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport"content="width=device-width, initial-scale=1.0">
+    <title>Forest |个人网站</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Sixtyfour&display=swap"rel="stylesheet">
+    <link rel="stylesheet"href="styles.css">
 </head>
 <body>
-    <!-- 三维粒子背景 -->
+    <!--三维粒子背景 -->
     <div id="particle-canvas"></div>
 
-    <!-- 自定义鼠标指针 -->
+    <!--自定义鼠标指针 -->
     <div class="custom-cursor">
         <div class="cursor-core"></div>
         <div class="cursor-trail"></div>
     </div>
 
-    <!-- 内容区 -->
+    <!--内容区 -->
     <main class="content-card">
-        <h1 class="glitch-text">🚀 Forest's Space</h1>
+        <h1 class="glitch-text">🚀Forest's Space</h1>
         
         <section>
             <h2 style="font-family: 'Orbitron'; color: #4ecdc4">关于我</h2>
             <p style="color: #fff; line-height: 1.6; font-size: 1.1em;">
-                我是Forest，穿梭在代码宇宙的探索者✨<br>
-                用二进制编织梦想，用算法绘制星辰🌌
+我是Forest，穿梭在代码宇宙的探索者✨<br>
+用二进制编织梦想，用算法绘制星辰🌌
             </p>
         </section>
 
         <section>
             <h2 style="font-family: 'Orbitron'; color: #ff6b6b">作品集</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                <div class="content-card" style="transition: 0.3s;">
-                    <h3>太空计算器</h3>
-                    <p>使用Three.js构建的3D交互计算器</p>
-                </div>
+            <div class="projects-grid">
+                <!--项目1 -->
+                <a href="projects/image-classification.html"class="project-card">
+                    <div class="project-content">
+                        <h3>多类别图像分类系统</h3>
+                        <div class="project-tags">
+                            <span>PyTorch</span>
+                            <span>CNN</span>
+                            <span>CIFAR-10</span>
+                        </div>
+                        <p>基于自定义卷积神经网络，实现93.2%分类准确率，集成学习率衰减策略与数据增强</p>
+                    </div>
+                </a>
+
+                <!--项目2 -->
+                <a href="projects/tetris.html"class="project-card">
+                    <div class="project-content">
+                        <h3>经典俄罗斯方块</h3>
+                        <div class="project-tags">
+                            <span>C++</span>
+                            <span>OOP</span>
+                            <span>图形界面</span>
+                        </div>
+                        <p>支持多玩家对战与实时排行榜，实现工厂模式管理方块生成和存档系统</p>
+                    </div>
+                </a>
+
+                <!--项目3 -->
+                <a href="projects/banking-system.html"class="project-card">
+                    <div class="project-content">
+                        <h3>银行账户管理系统</h3>
+                        <div class="project-tags">
+                            <span>Java</span>
+                            <span>MVC</span>
+                            <span>Swing</span>
+                        </div>
+                        <p>采用DAO模式实现数据持久化，支持自定义异常处理和文件加密存储</p>
+                    </div>
+                </a>
+
+                <!--项目4 -->
+                <a href="projects/id-system.html"class="project-card">
+                    <div class="project-content">
+                        <h3>身份证管理系统</h3>
+                        <div class="project-tags">
+                            <span>数据结构</span>
+                            <span>哈希表</span>
+                            <span>算法优化</span>
+                        </div>
+                        <p>实现千万级数据快速检索，支持合法性验证与批量生成功能</p>
+                    </div>
+                </a>
             </div>
         </section>
 
         <section>
             <h2 style="font-family: 'Orbitron'; color: #45b7d1">找到我</h2>
             <ul style="list-style: none; padding: 0;">
-                <li><a href="mailto:lin_shirong123@163.com" class="magic-link">📧 &lt;星际邮件&gt;</a></li>
+                <li><a href="mailto:lin_shirong123@163.com"class="magic-link">📧 &lt;星际邮件&gt;</a></li>
             </ul>
         </section>
     </main>
@@ -54,174 +102,178 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
 
-    <!-- 修正后的点击特效 -->
+    <!--修正后的点击特效 -->
     <script>
-        (function () {
-            var a_idx = 0;
-            window.onclick = function (event) {
-                var a = new Array("❤爱你❤", "❤比心❤", "❤耶❤", "❤mua~❤");
+        (
 
-                var heart = document.createElement("b");
-                heart.onselectstart = new Function('event.returnValue=false');
+function() {
+    var a_idx = 0;
+    window.onclick = function(event) {
+        var a = new Array("❤爱你❤", "❤比心❤", "❤耶❤", "❤mua~❤");
 
-                document.body.appendChild(heart).innerHTML = a[a_idx];
-                a_idx = (a_idx + 1) % a.length;
-                heart.style.cssText = "position: fixed;left:-100%;";
+        var heart = document.createElement("b");
+        heart.onselectstart = new Function('event.returnValue=false');
 
-                var f = 16,
-                    x = event.clientX - f / 2,
-                    y = event.clientY - f,
-                    c = randomColor(),
-                    a = 1,
-                    s = 1.2;
+        document.body.appendChild(heart).innerHTML = a[a_idx];
+        a_idx = (a_idx + 1) % a.length;
+        heart.style.cssText = "position: fixed;left:-100%;";
 
-                var timer = setInterval(function () {
-                    if (a <= 0) {
-                        document.body.removeChild(heart);
-                        clearInterval(timer);
-                    } else {
-                        heart.style.cssText = "font-size:16px;cursor: default;position: fixed;color:" +
-                            c + ";left:" + x + "px;top:" + y + "px;opacity:" + a + ";transform:scale(" +
-                            s + ");";
-                        y--;
-                        a -= 0.016;
-                        s += 0.002;
-                    }
-                }, 15)
+        var f = 16,
+                x = event.clientX - f / 2,
+                y = event.clientY - f,
+                c = randomColor(),
+                a = 1,
+                s = 1.2;
+
+        var timer = setInterval(function() {
+            if (a <= 0) {
+                document.body.removeChild(heart);
+                clearInterval(timer);
+            } else {
+                heart.style.cssText = "font-size:16px;cursor: default;position: fixed;color:" +
+                        c + ";left:" + x + "px;top:" + y + "px;opacity:" + a + ";transform:scale(" +
+                        s + ");";
+                y--;
+                a -= 0.016;
+                s += 0.002;
             }
+        },15)
+    }
 
-            function randomColor() {
-                return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
-            }
-        }());
+    function randomColor () {
+        return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+    }
+}());
     </script>
 
     <script>
-        (function fairyDustCursor() {
- 
-            var possibleColors = ["#D61C59", "#E7D84B", "#1B8798"]
-            var width = window.innerWidth;
-            var height = window.innerHeight;
-            var cursor = { x: width / 2, y: width / 2 };
-            var particles = [];
- 
-            function init() {
-                bindEvents();
-                loop();
+        (
+
+function fairyDustCursor() {
+
+    var possibleColors = ["#D61C59", "#E7D84B", "#1B8798"]
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    var cursor = {x:width / 2, y:width / 2 };
+    var particles = [];
+
+    function init () {
+        bindEvents();
+        loop();
+    }
+
+    // Bind events that are needed
+    function bindEvents () {
+        document.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('resize', onWindowResize);
+    }
+
+    function onWindowResize (e) {
+            width = window.innerWidth;
+    height = window.innerHeight;
             }
- 
-            // Bind events that are needed
-            function bindEvents() {
-                document.addEventListener('mousemove', onMouseMove);
-                window.addEventListener('resize', onWindowResize);
+
+    function onMouseMove (e) {
+            cursor.x = e.clientX;
+    cursor.y = e.clientY;
+
+    addParticle(cursor.x, cursor.y, possibleColors[Math.floor(Math.random() * possibleColors.length)]);
             }
- 
-            function onWindowResize(e) {
-                width = window.innerWidth;
-                height = window.innerHeight;
+
+    function addParticle (x, y, color){
+        var particle = new Particle();
+        particle.init(x, y, color);
+        particles.push(particle);
+    }
+
+    function updateParticles () {
+
+        // Updated
+        for (var i = 0; i < particles.length; i++) {
+            particles[i].update();
+        }
+
+        // Remove dead particles
+        for (var i = particles.length - 1; i >= 0; i--) {
+            if (particles[i].lifeSpan < 0) {
+                particles[i].die();
+                particles.splice(i, 1);
             }
- 
-            function onMouseMove(e) {
-                cursor.x = e.clientX;
-                cursor.y = e.clientY;
- 
-                addParticle(cursor.x, cursor.y, possibleColors[Math.floor(Math.random() * possibleColors.length)]);
-            }
- 
-            function addParticle(x, y, color) {
-                var particle = new Particle();
-                particle.init(x, y, color);
-                particles.push(particle);
-            }
- 
-            function updateParticles() {
- 
-                // Updated
-                for (var i = 0; i < particles.length; i++) {
-                    particles[i].update();
-                }
- 
-                // Remove dead particles
-                for (var i = particles.length - 1; i >= 0; i--) {
-                    if (particles[i].lifeSpan < 0) {
-                        particles[i].die();
-                        particles.splice(i, 1);
-                    }
-                }
- 
-            }
- 
-            function loop() {
-                requestAnimationFrame(loop);
-                updateParticles();
-            }
- 
-            /**
-             * Particles
-             */
- 
-            function Particle() {
- 
-                this.character = "*";
-                this.lifeSpan = 120; //ms
-                this.initialStyles = {
-                    "position": "fixed",
-                    "display": "inline-block",
-                    "top": "0px",
-                    "left": "0px",
-                    "pointerEvents": "none",
-                    "touch-action": "none",
-                    "z-index": "10000000",
-                    "fontSize": "25px",
-                    "will-change": "transform"
+        }
+
+    }
+
+    function loop () {
+        requestAnimationFrame(loop);
+        updateParticles();
+    }
+
+    /**
+     * Particles
+     */
+
+    function Particle () {
+
+        this.character = "*";
+        this.lifeSpan = 120; //ms
+        this.initialStyles = {
+                "position":"fixed",
+                "display":"inline-block",
+                "top":"0px",
+                "left":"0px",
+                "pointerEvents":"none",
+                "touch-action":"none",
+                "z-index":"10000000",
+                "fontSize":"25px",
+                "will-change":"transform"
                 };
- 
-                // Init, and set properties
-                this.init = function (x, y, color) {
- 
-                    this.velocity = {
-                        x: (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
-                        y: 1
+
+        // Init, and set properties
+        this.init = function(x, y, color) {
+
+            this.velocity = {
+                    x:(Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
+                    y:1
                     };
- 
-                    this.position = { x: x + 10, y: y + 10 };
-                    this.initialStyles.color = color;
- 
-                    this.element = document.createElement('span');
-                    this.element.innerHTML = this.character;
-                    applyProperties(this.element, this.initialStyles);
-                    this.update();
- 
-                    document.querySelector('.js-cursor-container').appendChild(this.element);
-                };
- 
-                this.update = function () {
-                    this.position.x += this.velocity.x;
-                    this.position.y += this.velocity.y;
-                    this.lifeSpan--;
- 
-                    this.element.style.transform = "translate3d(" + this.position.x + "px," + this.position.y + "px, 0) scale(" + (this.lifeSpan / 120) + ")";
-                }
- 
-                this.die = function () {
-                    this.element.parentNode.removeChild(this.element);
-                }
- 
-            }
- 
-            /**
-             * Utils
-             */
- 
-            // Applies css `properties` to an element.
-            function applyProperties(target, properties) {
-                for (var key in properties) {
-                    target.style[key] = properties[key];
-                }
-            }
- 
-            if (!('ontouchstart' in window || navigator.msMaxTouchPoints)) init();
-        })();    
+
+            this.position = {x:x + 10, y:y + 10 };
+            this.initialStyles.color = color;
+
+            this.element = document.createElement('span');
+            this.element.innerHTML = this.character;
+            applyProperties(this.element, this.initialStyles);
+            this.update();
+
+            document.querySelector('.js-cursor-container').appendChild(this.element);
+        } ;
+
+        this.update = function() {
+            this.position.x += this.velocity.x;
+            this.position.y += this.velocity.y;
+            this.lifeSpan--;
+
+            this.element.style.transform = "translate3d(" + this.position.x + "px," + this.position.y + "px, 0) scale(" + (this.lifeSpan / 120) + ")";
+        }
+
+        this.die = function() {
+            this.element.parentNode.removeChild(this.element);
+        }
+
+    }
+
+    /**
+     * Utils
+     */
+
+    // Applies css `properties` to an element.
+    function applyProperties (target, properties){
+        for (var key in properties){
+            target.style[key] = properties[key];
+        }
+    }
+
+    if (!('ontouchstart' in window ||navigator.msMaxTouchPoints))init();
+})();
     </script>
 </body>
 </html>
