@@ -1,4 +1,5 @@
-/* 科技感背景 */
+cument.head.appendChild(style);
+});css文件：/* 科技感背景 */
 .cyber-bg {
     position: fixed;
     top: 0;
@@ -18,7 +19,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin: 10px 0 !important;
+    margin: 20px 0;
 }
 
 .line-deco {
@@ -30,24 +31,22 @@
 
 .project-title {
     color: #ffffff;
-    font-size: 2em;
-    line-height: 1;
+    font-size: 2em; /* 减小字体大小 */
+    line-height: 1; /* 减少行高以减小纵向空间 */
     display: flex;
     align-items: center;
 }
 
 .project-glitch {
     color: #ffffff;
-    font-size: 2.5em;
-    margin: 0.5em 0;
-    padding: 0 1rem;
-    line-height: 1.2;
+    font-size: 2.5em; /* 增加字体大小 */
+    line-height: 1.2; /* 减少行高以减小纵向空间 */
 }
 
 /* 项目容器 */
 .project-container {
-    min-height: calc(100vh - 120px);
-    padding: 1rem 0;
+    min-height: 100vh;
+    padding: 2rem 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -109,29 +108,23 @@
     cursor: grabbing;
 }
 
-/* 控制按钮 */
+/* 修复按钮样式 */
 .image-controls {
     position: absolute;
     bottom: 1rem;
     right: 1rem;
     display: flex;
     gap: 0.5rem;
-    align-items: center;
 }
 
 .ctrl-btn {
     background: rgba(0, 0, 0, 0.7);
     border: 1px solid #6bd6ff;
     color: #fff;
-    width: 40px;
-    height: 40px;
+    padding: 0.5rem 1rem;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
 }
 
 .ctrl-btn:hover {
@@ -141,14 +134,32 @@
 
 /* 清除按钮 */
 #clear-btn {
-    order: 1;
-    margin-left: 1rem;
-    background: rgba(107, 214, 255, 0.7) !important;
-    border: 1px solid #6bd6ff !important;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 0.8rem;
+    background: rgba(255, 50, 50, 0.7);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 #clear-btn:hover {
-    background: #6bd6ff !important;
+    background: #ff3232;
+}
+
+/* 拖动功能修复 */
+#preview-image {
+    cursor: grab;
+}
+
+#preview-image:active {
+    cursor: grabbing;
+}
+
+/* 添加必要的拖动样式 */
+.dragging #preview-image {
+    cursor: grabbing;
 }
 
 /* 悬浮控制台 */
@@ -189,6 +200,11 @@
 .log-entry {
     margin: 0.5rem 0;
     color: #6bd6ff;
+}
+
+/* 隐藏默认文件输入 */
+#image-upload {
+    display: none;
 }
 
 /* 导航栏增强 */
@@ -249,9 +265,4 @@
 
 .home-link:hover .neon-arrow {
     transform: translateX(-5px);
-}
-
-/* 隐藏默认文件输入 */
-#image-upload {
-    display: none;
 }
