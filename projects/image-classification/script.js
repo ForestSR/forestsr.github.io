@@ -25,10 +25,6 @@ function updateImageScale() {
     const img = document.getElementById('preview-image');
     img.style.transform = `scale(${scale})`;
     document.getElementById('upload-status').textContent = `[INFO] 当前缩放: ${(scale * 100).toFixed(1)}%`;
-
-    // 动态禁用按钮
-    document.getElementById('zoom-in').disabled = scale >= maxScale;
-    document.getElementById('zoom-out').disabled = scale <= minScale;
 }
 
 function resetZoom() {
