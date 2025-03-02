@@ -73,7 +73,7 @@
     <div class="console-panel">
         <div class="console-header">
             <div class="led-indicator"></div>
-<span>SYSTEM MONITOR</span>
+            <span>SYSTEM MONITOR</span>
         </div>
         <div class="console-content">
             <div class="log-entry">[INFO] 模型加载完成</div>
@@ -82,181 +82,172 @@
         </div>
     </div>
 
+    <!-- 添加缺失的元素 -->
+    <span class="js-cursor-container"></span>
+
     <script src="../../script.js"></script>
     <script src="script.js"></script>
 
     <!--修正后的点击特效 -->
     <script>
-        (
+        (function() {
+            var a_idx = 0;
+            window.onclick = function(event) {
+                var a = new Array("❤爱你❤", "❤比心❤", "❤耶❤", "❤mua~❤");
 
-function() {
-    var a_idx = 0;
-    window.onclick = function(event) {
-        var a = new Array("❤爱你❤", "❤比心❤", "❤耶❤", "❤mua~❤");
+                var heart = document.createElement("b");
+                heart.onselectstart = new Function('event.returnValue=false');
 
-        var heart = document.createElement("b");
-        heart.onselectstart = new Function('event.returnValue=false');
+                document.body.appendChild(heart).innerHTML = a[a_idx];
+                a_idx = (a_idx + 1) % a.length;
+                heart.style.cssText = "position: fixed;left:-100%;";
 
-        document.body.appendChild(heart).innerHTML = a[a_idx];
-        a_idx = (a_idx + 1) % a.length;
-        heart.style.cssText = "position: fixed;left:-100%;";
+                var f = 16,
+                    x = event.clientX - f / 2,
+                    y = event.clientY - f,
+                    c = randomColor(),
+                    a = 1,
+                    s = 1.2;
 
-        var f = 16,
-                x = event.clientX - f / 2,
-                y = event.clientY - f,
-                c = randomColor(),
-                a = 1,
-                s = 1.2;
-
-        var timer = setInterval(function() {
-            if (a <= 0) {
-                document.body.removeChild(heart);
-                clearInterval(timer);
-            } else {
-                heart.style.cssText = "font-size:16px;cursor: default;position: fixed;color:" +
-                        c + ";left:" + x + "px;top:" + y + "px;opacity:" + a + ";transform:scale(" +
-                        s + ");";
-                y--;
-                a -= 0.016;
-                s += 0.002;
+                var timer = setInterval(function() {
+                    if (a <= 0) {
+                        document.body.removeChild(heart);
+                        clearInterval(timer);
+                    } else {
+                        heart.style.cssText = "font-size:16px;cursor: default;position: fixed;color:" +
+                            c + ";left:" + x + "px;top:" + y + "px;opacity:" + a + ";transform:scale(" +
+                            s + ");";
+                        y--;
+                        a -= 0.016;
+                        s += 0.002;
+                    }
+                }, 15)
             }
-        },15)
-    }
 
-    function randomColor () {
-        return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
-    }
-}());
+            function randomColor() {
+                return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+            }
+        }());
     </script>
 
     <script>
-        (
+        (function fairyDustCursor() {
+            var possibleColors = ["#D61C59", "#E7D84B", "#1B8798"]
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+            var cursor = { x: width / 2, y: width / 2 };
+            var particles = [];
 
-function fairyDustCursor() {
-
-    var possibleColors = ["#D61C59", "#E7D84B", "#1B8798"]
-    var width = window.innerWidth;
-    var height = window.innerHeight;
-    var cursor = {x:width / 2, y:width / 2 };
-    var particles = [];
-
-    function init () {
-        bindEvents();
-        loop();
-    }
-
-    // Bind events that are needed
-    function bindEvents () {
-        document.addEventListener('mousemove', onMouseMove);
-        window.addEventListener('resize', onWindowResize);
-    }
-
-    function onWindowResize (e) {
-            width = window.innerWidth;
-    height = window.innerHeight;
+            function init() {
+                bindEvents();
+                loop();
             }
 
-    function onMouseMove (e) {
-            cursor.x = e.clientX;
-    cursor.y = e.clientY;
-
-    addParticle(cursor.x, cursor.y, possibleColors[Math.floor(Math.random() * possibleColors.length)]);
+            // Bind events that are needed
+            function bindEvents() {
+                document.addEventListener('mousemove', onMouseMove);
+                window.addEventListener('resize', onWindowResize);
             }
 
-    function addParticle (x, y, color){
-        var particle = new Particle();
-        particle.init(x, y, color);
-        particles.push(particle);
-    }
-
-    function updateParticles () {
-
-        // Updated
-        for (var i = 0; i < particles.length; i++) {
-            particles[i].update();
-        }
-
-        // Remove dead particles
-        for (var i = particles.length - 1; i >= 0; i--) {
-            if (particles[i].lifeSpan < 0) {
-                particles[i].die();
-                particles.splice(i, 1);
+            function onWindowResize(e) {
+                width = window.innerWidth;
+                height = window.innerHeight;
             }
-        }
 
-    }
+            function onMouseMove(e) {
+                cursor.x = e.clientX;
+                cursor.y = e.clientY;
 
-    function loop () {
-        requestAnimationFrame(loop);
-        updateParticles();
-    }
+                addParticle(cursor.x, cursor.y, possibleColors[Math.floor(Math.random() * possibleColors.length)]);
+            }
 
-    /**
-     * Particles
-     */
+            function addParticle(x, y, color) {
+                var particle = new Particle();
+                particle.init(x, y, color);
+                particles.push(particle);
+            }
 
-    function Particle () {
+            function updateParticles() {
+                // Updated
+                for (var i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                }
 
-        this.character = "*";
-        this.lifeSpan = 120; //ms
-        this.initialStyles = {
-                "position":"fixed",
-                "display":"inline-block",
-                "top":"0px",
-                "left":"0px",
-                "pointerEvents":"none",
-                "touch-action":"none",
-                "z-index":"10000000",
-                "fontSize":"25px",
-                "will-change":"transform"
+                // Remove dead particles
+                for (var i = particles.length - 1; i >= 0; i--) {
+                    if (particles[i].lifeSpan < 0) {
+                        particles[i].die();
+                        particles.splice(i, 1);
+                    }
+                }
+            }
+
+            function loop() {
+                requestAnimationFrame(loop);
+                updateParticles();
+            }
+
+            /**
+             * Particles
+             */
+            function Particle() {
+                this.character = "*";
+                this.lifeSpan = 120; //ms
+                this.initialStyles = {
+                    "position": "fixed",
+                    "display": "inline-block",
+                    "top": "0px",
+                    "left": "0px",
+                    "pointerEvents": "none",
+                    "touch-action": "none",
+                    "z-index": "10000000",
+                    "fontSize": "25px",
+                    "will-change": "transform"
                 };
 
-        // Init, and set properties
-        this.init = function(x, y, color) {
-
-            this.velocity = {
-                    x:(Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
-                    y:1
+                // Init, and set properties
+                this.init = function(x, y, color) {
+                    this.velocity = {
+                        x: (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
+                        y: 1
                     };
 
-            this.position = {x:x + 10, y:y + 10 };
-            this.initialStyles.color = color;
+                    this.position = { x: x + 10, y: y + 10 };
+                    this.initialStyles.color = color;
 
-            this.element = document.createElement('span');
-            this.element.innerHTML = this.character;
-            applyProperties(this.element, this.initialStyles);
-            this.update();
+                    this.element = document.createElement('span');
+                    this.element.innerHTML = this.character;
+                    applyProperties(this.element, this.initialStyles);
+                    this.update();
 
-            document.querySelector('.js-cursor-container').appendChild(this.element);
-        } ;
+                    document.querySelector('.js-cursor-container').appendChild(this.element);
+                };
 
-        this.update = function() {
-            this.position.x += this.velocity.x;
-            this.position.y += this.velocity.y;
-            this.lifeSpan--;
+                this.update = function() {
+                    this.position.x += this.velocity.x;
+                    this.position.y += this.velocity.y;
+                    this.lifeSpan--;
 
-            this.element.style.transform = "translate3d(" + this.position.x + "px," + this.position.y + "px, 0) scale(" + (this.lifeSpan / 120) + ")";
-        }
+                    this.element.style.transform = "translate3d(" + this.position.x + "px," + this.position.y + "px, 0) scale(" + (this.lifeSpan / 120) + ")";
+                }
 
-        this.die = function() {
-            this.element.parentNode.removeChild(this.element);
-        }
+                this.die = function() {
+                    this.element.parentNode.removeChild(this.element);
+                }
+            }
 
-    }
+            /**
+             * Utils
+             */
+            // Applies css `properties` to an element.
+            function applyProperties(target, properties) {
+                for (var key in properties) {
+                    target.style[key] = properties[key];
+                }
+            }
 
-    /**
-     * Utils
-     */
-
-    // Applies css `properties` to an element.
-    function applyProperties (target, properties){
-        for (var key in properties){
-            target.style[key] = properties[key];
-        }
-    }
-
-    if (!('ontouchstart' in window ||navigator.msMaxTouchPoints))init();
-})();
+            if (!('ontouchstart' in window || navigator.msMaxTouchPoints)) init();
+        }());
     </script>
 </body>
 </html>
