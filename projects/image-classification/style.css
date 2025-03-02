@@ -12,7 +12,6 @@
     );
 }
 
-/* 导入Orbitron字体 */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
 /* 添加炫酷的文字效果 */
@@ -20,10 +19,13 @@
   font-family: 'Orbitron', sans-serif;
   color: #4ecdc4;
   font-size: 2em;
-  text-align: center;
+  text-align: center; /* 这将确保文字在元素内居中 */
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
+  display: flex; /* 使用flex布局 */
+  justify-content: center; /* 确保flex子项在主轴上居中 */
+  align-items: center; /* 确保flex子项在交叉轴上居中 */
   padding: 10px;
 }
 
