@@ -1,3 +1,38 @@
+// 图片缩放控制
+let scale = 1;
+const minScale = 0.1;
+const maxScale = 3;
+
+function zoomIn() {
+    if (scale < maxScale) {
+        scale += 0.1;
+        updateImageScale();
+    } else {
+        document.getElementById('upload-status').textContent = '[INFO] 已达到最大缩放比例';
+    }
+}
+
+function zoomOut() {
+    if (scale > minScale) {
+        scale -= 0.1;
+        updateImageScale();
+    } else {
+        document.getElementById('upload-status').textContent = '[INFO] 已达到最小缩放比例';
+    }
+}
+
+function updateImageScale() {
+    const img = document.getElementById('preview-image');
+    img.style.transform = `scale(${scale})`;
+    document.getElementById('upload-status').textContent = `[INFO] 当前缩放: ${(scale * 100).toFixed(1)}%`;
+}
+
+function resetZoom() {
+    scale = 1;
+    updateImageScale();
+}
+
+// 图片上传处理
 function handleImageUpload(e) {
     const file = e.target.files[0];
     if (!file || !file.type.startsWith('image/')) {
@@ -52,3 +87,26 @@ function handleImageUpload(e) {
     };
     reader.readAsDataURL(file);
 }
+
+// 初始化
+document.addEventListener('DOMContentLoaded', () => {
+    const uploadZone = document.querySelector('.upload-zone');
+    const input = document.querySelector('#image-upload');
+    const zoomInBtn = document.getElementById('zoom-in');
+    const zoomOutBtn = document.getElementById('zoom-out');
+    const resetBtn = document.getElementById('reset');
+
+    // 点击上传区域触发文件选择
+    uploadZone.addEventListener('click', () => input.click());
+
+    // 文件选择事件
+    input.addEventListener('change', handleImageUpload);
+
+    // 缩放按钮事件
+    zoomInBtn.addEventListener('click', zoomIn);
+    zoomOutBtn.addEventListener('click', zoomOut);
+    resetBtn.addEventListener('click', resetZoom);
+
+    // 初始化时隐藏图片预览区域
+    document.querySelector('.image-preview').style.display = 'none';
+});
