@@ -7,6 +7,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* 添加一些基础样式和修复字体颜色问题 */
+        body {
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            font-family: 'Orbitron', sans-serif;
+            color: #fff; /* 修改字体颜色为白色 */
+        }
+        .console-text, .log-entry {
+            color: #4ecdc4; /* 修改控制台文本颜色 */
+        }
+        .predicted-class, .confidence-value {
+            color: #ff6b6b; /* 修改预测结果颜色 */
+        }
+        /* 其他样式保持不变 */
+    </style>
 </head>
 <body>
     <!-- 科技感背景 -->
@@ -18,116 +36,28 @@
     <!-- 动态导航栏 -->
     <nav class="project-nav">
         <a href="../../index.html" class="home-link">
-            <span class="neon-arrow">◄</span>
-            <span class="link-text">返回空间站</span>
-            <div class="hover-glow"></div>
+            <span class="neon-arrow"></span>
         </a>
-        <div class="nav-tags">
-            <span class="tag-pulse">PyTorch</span>
-            <span class="tag-pulse">CNN</span>
-            <span class="tag-pulse">计算机视觉</span>
-        </div>
     </nav>
 
-    <!-- 项目主内容 -->
-    <main class="project-container">
-        <!-- 全息标题 -->
-        <h1 class="project-glitch" data-text="图像分类系统">图像分类系统</h1>
-        
-        <!-- 技术架构 -->
-        <section class="tech-architecture">
-            <div class="section-header">
-                <div class="line-deco"></div>
-                <h2><span class="icon">⚙️</span>技术架构</h2>
-                <div class="line-deco"></div>
-            </div>
-            
-            <div class="arch-content">
-                <!-- 神经网络可视化 -->
-                <div class="network-visual">
-                    <div class="layer conv-layer">
-                        <div class="node"></div>
-                        <div class="node"></div>
-                        <div class="node"></div>
-                    </div>
-                    <div class="connectors"></div>
-                    <div class="layer pool-layer">
-                        <div class="node"></div>
-                    </div>
-                    <div class="connectors"></div>
-                    <div class="layer fc-layer">
-                        <div class="node"></div>
-                    </div>
-                </div>
+    <!-- 上传区域 -->
+    <div class="upload-zone" id="uploadZone">
+        <input type="file" id="fileInput" accept="image/*">
+        <label for="fileInput">选择图片</label>
+    </div>
 
-                <!-- 性能参数 -->
-                <div class="specs-grid">
-                    <div class="spec-card">
-                        <div class="spec-value" data-target="93.2">0.0</div>
-                        <div class="spec-label">准确率 (%)</div>
-                        <div class="spec-graph">
-                            <div class="graph-bar"></div>
-                        </div>
-                    </div>
-                    <div class="spec-card">
-                        <div class="spec-value" data-target="135">0</div>
-                        <div class="spec-label">训练时长 (分钟)</div>
-                        <div class="spec-graph">
-                            <div class="graph-bar"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- 图片预览区域 -->
+    <div class="upload-overlay" style="display:none;">
+        <img id="imagePreview" src="" alt="Image Preview">
+        <div class="predicted-class">预测类别: <span></span></div>
+        <div class="confidence">置信度: <span class="confidence-value"></span><div class="confidence-bar"></div></div>
+    </div>
 
-        <!-- 动态演示 -->
-        <section class="live-demo">
-            <div class="section-header">
-                <div class="line-deco"></div>
-                <h2><span class="icon">🎮</span>实时演示</h2>
-                <div class="line-deco"></div>
-            </div>
-
-            <div class="demo-container">
-                <!-- 3D模型可视化 -->
-                <div class="model-visual">
-                    <canvas id="model-canvas"></canvas>
-                    <div class="model-controls">
-                        <button class="ctrl-btn zoom-in">+</button>
-                        <button class="ctrl-btn zoom-out">-</button>
-                    </div>
-                </div>
-
-                <!-- 交互演示区 -->
-                <div class="demo-panel">
-                    <div class="upload-zone">
-                        <div class="upload-overlay">
-                            <div class="upload-icon">🖼️</div>
-                            <p>拖放图片或点击上传</p>
-                        </div>
-                        <input type="file" id="image-upload" accept="image/*">
-                    </div>
-                    
-                    <div class="prediction-result">
-                        <div class="confidence-meter">
-                            <div class="confidence-bar"></div>
-                            <div class="confidence-label">可信度</div>
-                        </div>
-                        <div class="class-display">
-                            <span class="predicted-class">飞机</span>
-                            <span class="confidence-value">92.3%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 悬浮控制台 -->
+    <!-- 控制台信息 -->
     <div class="console-panel">
         <div class="console-header">
             <div class="led-indicator"></div>
-            <span>SYSTEM MONITOR</span>
+            <span class="console-text">SYSTEM MONITOR</span>
         </div>
         <div class="console-content">
             <div class="log-entry">[INFO] 模型加载完成</div>
@@ -135,8 +65,31 @@
         </div>
     </div>
 
-    <script src="../../script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+                    img.onload = function() {
+                        document.querySelector('.upload-overlay').style.display = 'block';
+                        document.getElementById('uploadZone').appendChild(img);
+                        predictImage(img);
+                    };
+                };
+                reader.readAsDataURL(file);
+                event.target.value = ''; // 清空文件输入，防止重复上传
+            }
+        });
+
+        function predictImage(img) {
+            // 这里可以调用模型预测函数，以下是模拟结果
+            document.querySelector('.predicted-class span').textContent = '飞机';
+            document.querySelector('.confidence-value').textContent = '92.3%';
+            document.querySelector('.confidence-bar').style.width = '92.3%';
+        }
+    </script>
 </body>
 </html>
