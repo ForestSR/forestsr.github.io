@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多类别图像分类 - Forest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="project-nav">
+        <a href="../../index.html" class="home-link">🏠 返回空间站</a>
+        <div class="nav-tags">
+            <span>PyTorch</span>
+            <span>CNN</span>
+            <span>计算机视觉</span>
+        </div>
+    </nav>
+
+    <!-- 项目主内容 -->
+    <main class="project-container">
+        <h1 class="project-glitch">图像分类系统</h1>
+        
+        <!-- 技术架构 -->
+        <section class="tech-architecture">
+            <h2>⚙️ 技术架构</h2>
+            <div class="architecture-diagram"></div>
+            <div class="specs">
+                <div class="spec-item">
+                    <h3>准确率</h3>
+                    <p class="glowing-text">93.2%</p>
+                </div>
+                <div class="spec-item">
+                    <h3>训练时长</h3>
+                    <p class="glowing-text">2h 15m</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 动态演示 -->
+        <section class="live-demo">
+            <h2>🎮 实时演示</h2>
+            <div class="demo-container">
+                <div class="model-visualization"></div>
+                <div class="upload-area">
+                    <input type="file" id="image-upload" accept="image/*">
+                    <div class="prediction-result"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
