@@ -80,7 +80,7 @@
     position: relative;
     overflow: hidden;
     transition: all 0.3s;
-    background: rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.05);
     cursor: pointer; /* 添加光标提示 */
 }
 
@@ -98,14 +98,19 @@
     color: #fff;
 }
 
+/* 图片预览区域 */
 .image-preview {
     margin: 2rem auto 0; /* 上下边距+水平居中 */
     display: none; /* 初始隐藏 */
+    justify-content: center;
+    align-items: center;
     position: relative;
     width: 80%;
-    height: 60vh;
+    height: 60vh; /* 固定高度 */
     border: 2px solid #4ecdc4;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* 防止图片溢出 */
+    border-radius: 15px;
 }
 
 #preview-image {
@@ -113,9 +118,10 @@
     max-height: 100%;
     width: auto;
     height: auto;
-    margin: auto;
-    object-fit: contain;
+    object-fit: contain; /* 图片自适应容器 */
     transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: center center; /* 缩放中心点 */
+    border-radius: 15px; /* 圆角 */
 }
 
 .image-controls {
@@ -134,15 +140,18 @@
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s;
-    opacity: 0.5;
-    cursor: not-allowed;
-    background: rgba(0, 0, 0, 0.5);
-    border-color: #666;
 }
 
 .ctrl-btn:hover {
     background: #4ecdc4;
     color: #000;
+}
+
+.ctrl-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.5);
+    border-color: #666;
 }
 
 /* 悬浮控制台 */
@@ -151,7 +160,7 @@
     bottom: 2rem;
     left: 2rem; /* 从 right 改为 left */
     width: 300px;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
     border: 1px solid #4ecdc4;
     border-radius: 10px;
     font-family: 'Courier New', monospace;
@@ -183,4 +192,31 @@
 .log-entry {
     margin: 0.5rem 0;
     color: #4ecdc4;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .image-preview {
+        width: 95%;
+        height: 50vh;
+    }
+
+    .console-panel {
+        width: 90%;
+        left: 5%;
+        bottom: 1rem;
+    }
+
+    .upload-zone {
+        height: 150px; /* 在小屏幕上减小高度 */
+    }
+
+    .upload-overlay {
+        font-size: 14px; /* 减小字体大小 */
+    }
+}
+
+/* 隐藏初始横条 */
+body::after {
+    display: none !important;
 }
