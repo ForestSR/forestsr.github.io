@@ -53,7 +53,6 @@ function initDrag() {
     const img = document.getElementById('preview-image');
     
     img.addEventListener('mousedown', (e) => {
-        if (scale <= 1) return;
         isDragging = true;
         startX = e.clientX - translateX;
         startY = e.clientY - translateY;
@@ -71,7 +70,7 @@ function initDrag() {
 
     document.addEventListener('mouseup', () => {
         isDragging = false;
-        img.style.cursor = scale > 1 ? 'grab' : 'default';
+    	  img.style.cursor = 'grab'; // 始终显示可拖拽光标
     });
 }
 
