@@ -97,8 +97,7 @@
 .console-panel {
     position: fixed;
     bottom: 2rem;
-    left: 2rem;
-    right: auto;
+    left: 2rem; /* 从 right 改为 left */
     width: 300px;
     background: rgba(0,0,0,0.8);
     border: 1px solid #4ecdc4;
@@ -106,6 +105,7 @@
     font-family: 'Courier New', monospace;
     color: #fff;
     padding: 1rem;
+    z-index: 1000; /* 确保控制台在最上层 */
 }
 
 .console-header {
