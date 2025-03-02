@@ -1,14 +1,17 @@
-// 图片缩放控制
+// 图片操作相关变量
 let scale = 1;
+let isDragging = false;
+let startX, startY, translateX = 0, translateY = 0;
 const minScale = 0.1;
 const maxScale = 3;
 
+// 缩放功能
 function zoomIn() {
     if (scale < maxScale) {
         scale += 0.1;
         updateImageScale();
     } else {
-        document.getElementById('upload-status').textContent = '[INFO] 已达到最大缩放比例';
+        updateStatus('[INFO] 已达到最大缩放比例');
     }
 }
 
@@ -17,26 +20,66 @@ function zoomOut() {
         scale -= 0.1;
         updateImageScale();
     } else {
-        document.getElementById('upload-status').textContent = '[INFO] 已达到最小缩放比例';
+        updateStatus('[INFO] 已达到最小缩放比例');
     }
 }
 
 function updateImageScale() {
     const img = document.getElementById('preview-image');
-    img.style.transform = `scale(${scale})`;
-    document.getElementById('upload-status').textContent = `[INFO] 当前缩放: ${(scale * 100).toFixed(1)}%`;
+    img.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
+    updateStatus(`[INFO] 当前缩放: ${(scale * 100).toFixed(1)}%`);
 }
 
+// 重置功能
 function resetZoom() {
     scale = 1;
+    translateX = 0;
+    translateY = 0;
     updateImageScale();
+}
+
+// 清除功能
+function clearImage() {
+    document.querySelector('.upload-zone').style.display = 'flex';
+    document.querySelector('.image-preview').style.display = 'none';
+    document.getElementById('preview-image').src = '';
+    document.getElementById('image-upload').value = '';
+    resetZoom();
+    updateStatus('[STATUS] 已重置，等待新输入...');
+}
+
+// 拖拽功能
+function initDrag() {
+    const img = document.getElementById('preview-image');
+    
+    img.addEventListener('mousedown', (e) => {
+        if (scale <= 1) return;
+        isDragging = true;
+        startX = e.clientX - translateX;
+        startY = e.clientY - translateY;
+        img.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        
+        translateX = e.clientX - startX;
+        translateY = e.clientY - startY;
+        
+        img.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        img.style.cursor = scale > 1 ? 'grab' : 'default';
+    });
 }
 
 // 图片上传处理
 function handleImageUpload(e) {
     const file = e.target.files[0];
     if (!file || !file.type.startsWith('image/')) {
-        document.getElementById('upload-status').textContent = '[ERROR] 请上传图片文件';
+        updateStatus('[ERROR] 请上传有效的图片文件');
         return;
     }
 
@@ -45,56 +88,66 @@ function handleImageUpload(e) {
         const img = document.getElementById('preview-image');
         img.src = event.target.result;
 
-        // 隐藏上传区域，显示图片预览区域
         document.querySelector('.upload-zone').style.display = 'none';
         document.querySelector('.image-preview').style.display = 'flex';
-
-        // 重置缩放比例
         resetZoom();
 
-        // 调整图片尺寸以适应容器
         img.onload = function() {
             const container = document.querySelector('.image-preview');
-            const containerWidth = container.clientWidth;
-            const containerHeight = container.clientHeight;
             const imgWidth = img.naturalWidth;
             const imgHeight = img.naturalHeight;
 
-            // 计算适合容器的比例
-            const widthRatio = containerWidth / imgWidth;
-            const heightRatio = containerHeight / imgHeight;
-            const scaleRatio = Math.min(widthRatio, heightRatio);
+            // 自动滚动到可视区域
+            container.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
 
-            // 设置图片初始尺寸
-            img.style.width = `${imgWidth * scaleRatio}px`;
-            img.style.height = `${imgHeight * scaleRatio}px`;
-
-            // 更新日志
-            document.getElementById('upload-status').textContent = '[INFO] 图片上传成功';
+            updateStatus('[INFO] 图片加载完成');
+            initDrag(); // 初始化拖拽功能
         };
     };
     reader.readAsDataURL(file);
 }
 
-// 初始化
+// 工具函数
+function updateStatus(text) {
+    const statusElement = document.getElementById('upload-status');
+    statusElement.textContent = text;
+    statusElement.style.animation = 'highlight 0.5s';
+    setTimeout(() => statusElement.style.animation = '', 500);
+}
+
+// 初始化事件
 document.addEventListener('DOMContentLoaded', () => {
     const uploadZone = document.querySelector('.upload-zone');
     const input = document.querySelector('#image-upload');
-    const zoomInBtn = document.getElementById('zoom-in');
-    const zoomOutBtn = document.getElementById('zoom-out');
-    const resetBtn = document.getElementById('reset');
+    const controls = {
+        zoomIn: document.getElementById('zoom-in'),
+        zoomOut: document.getElementById('zoom-out'),
+        reset: document.getElementById('reset'),
+        clear: document.getElementById('clear-btn')
+    };
 
-    // 点击上传区域触发文件选择
+    // 事件绑定
     uploadZone.addEventListener('click', () => input.click());
-
-    // 文件选择事件
     input.addEventListener('change', handleImageUpload);
+    controls.zoomIn.addEventListener('click', zoomIn);
+    controls.zoomOut.addEventListener('click', zoomOut);
+    controls.reset.addEventListener('click', resetZoom);
+    controls.clear.addEventListener('click', clearImage);
 
-    // 缩放按钮事件
-    zoomInBtn.addEventListener('click', zoomIn);
-    zoomOutBtn.addEventListener('click', zoomOut);
-    resetBtn.addEventListener('click', resetZoom);
-
-    // 初始化时隐藏图片预览区域
+    // 初始状态
     document.querySelector('.image-preview').style.display = 'none';
+    
+    // 添加CSS动画
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes highlight {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+    `;
+    document.head.appendChild(style);
 });
