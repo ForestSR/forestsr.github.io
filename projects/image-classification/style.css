@@ -57,6 +57,24 @@
     background-position: 100% 100%;
   }
 }
+/* 文字上下波动效果的样式 */
+.text-wobble {
+  font-size: 3em; /* 可以根据需要调整字体大小 */
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  animation: wobble 3s infinite ease-in-out; /* 应用动画，持续时间为3秒，无限循环，缓动效果 */
+}
+
+/* 定义文字上下波动的关键帧 */
+@keyframes wobble {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* 在动画的一半时向下移动10px */
+  }
+}
 
 
 /* 副标题样式 */
