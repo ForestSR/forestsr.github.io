@@ -81,6 +81,7 @@
     overflow: hidden;
     transition: all 0.3s;
     background: rgba(255,255,255,0.05);
+    cursor: pointer; /* 添加光标提示 */
 }
 
 .upload-zone:hover {
@@ -100,7 +101,9 @@
 /* 图片预览区域 */
 .image-preview {
     margin-top: 2rem;
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     max-width: 80%; /* 限制最大宽度 */
     max-height: 60vh; /* 限制最大高度 */
@@ -135,6 +138,10 @@
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s;
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.5);
+    border-color: #666;
 }
 
 .ctrl-btn:hover {
