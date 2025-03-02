@@ -1,5 +1,4 @@
-cument.head.appendChild(style);
-});css文件：/* 科技感背景 */
+/* 科技感背景 */
 .cyber-bg {
     position: fixed;
     top: 0;
@@ -7,9 +6,9 @@ cument.head.appendChild(style);
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: radial-gradient(circle at 50% 50%,
-            rgba(15, 12, 41, 0.9) 0%,
-            rgba(48, 43, 99, 0.9) 100%
+    background: radial-gradient(circle at 50% 50%, 
+        rgba(15, 12, 41, 0.9) 0%, 
+        rgba(48, 43, 99, 0.9) 100%
     );
 }
 
@@ -31,16 +30,12 @@ cument.head.appendChild(style);
 
 .project-title {
     color: #ffffff;
-    font-size: 2em; /* 减小字体大小 */
-    line-height: 1; /* 减少行高以减小纵向空间 */
-    display: flex;
-    align-items: center;
+    font-size: 4em;
+    text-align: center;
 }
 
 .project-glitch {
     color: #ffffff;
-    font-size: 2.5em; /* 增加字体大小 */
-    line-height: 1.2; /* 减少行高以减小纵向空间 */
 }
 
 /* 项目容器 */
@@ -108,7 +103,7 @@ cument.head.appendChild(style);
     cursor: grabbing;
 }
 
-/* 修复按钮样式 */
+/* 控制按钮 */
 .image-controls {
     position: absolute;
     bottom: 1rem;
@@ -137,29 +132,15 @@ cument.head.appendChild(style);
     position: absolute;
     top: 1rem;
     right: 1rem;
-    padding: 0.5rem 0.8rem;
-    background: rgba(255, 50, 50, 0.7);
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
+    padding: 0.5rem 0.8rem !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    background: rgba(255, 50, 50, 0.7) !important;
+    border: none !important;
 }
 
 #clear-btn:hover {
-    background: #ff3232;
-}
-
-/* 拖动功能修复 */
-#preview-image {
-    cursor: grab;
-}
-
-#preview-image:active {
-    cursor: grabbing;
-}
-
-/* 添加必要的拖动样式 */
-.dragging #preview-image {
-    cursor: grabbing;
+    background: #ff3232 !important;
 }
 
 /* 悬浮控制台 */
@@ -236,9 +217,9 @@ cument.head.appendChild(style);
     position: absolute;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle,
-            rgba(107, 214, 255, 0.4) 0%,
-            transparent 70%);
+    background: radial-gradient(circle, 
+        rgba(107, 214, 255, 0.4) 0%, 
+        transparent 70%);
     opacity: 0;
     transition: opacity 0.3s;
     top: 0;
