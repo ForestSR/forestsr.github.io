@@ -26,7 +26,7 @@
 .line-deco {
     flex: 1;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #4ecdc4, transparent);
+    background: linear-gradient(90deg, transparent, #6bd6ff, transparent); /* 颜色与主标题一致 */
     margin: 0 10px;
 }
 
@@ -135,7 +135,7 @@
     padding: 1.5rem 3rem;
     backdrop-filter: blur(10px);
     background: rgba(0, 0, 0, 0.7);
-    border-bottom: 2px solid #4ecdc4;
+    border-bottom: 2px solid #6bd6ff; /* 颜色与主标题一致 */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -145,7 +145,7 @@
 .home-link {
     position: relative;
     padding: 0.8rem 1.5rem;
-    border: 1px solid #4ecdc4;
+    border: 1px solid #6bd6ff; /* 颜色与主标题一致 */
     border-radius: 30px;
     transition: all 0.3s;
     color: #fff;
@@ -160,7 +160,7 @@
     width: 100%;
     height: 100%;
     background: radial-gradient(circle, 
-        rgba(78, 205, 196, 0.4) 0%, 
+        rgba(107, 214, 255, 0.4) 0%, 
         transparent 70%);
     opacity: 0;
     transition: opacity 0.3s;
@@ -192,7 +192,7 @@
 
 /* 实时演示区 */
 .upload-zone {
-    border: 2px dashed #4ecdc4;
+    border: 2px dashed #6bd6ff; /* 颜色与主标题一致 */
     border-radius: 15px;
     height: 200px;
     position: relative;
@@ -206,7 +206,7 @@
 }
 
 .upload-zone:hover {
-    background: rgba(78, 205, 196, 0.1);
+    background: rgba(107, 214, 255, 0.1); /* 颜色与主标题一致 */
     transform: translateY(-3px);
 }
 
@@ -225,9 +225,9 @@
     max-height: 60vh;
     overflow: hidden;
     border-radius: 15px;
-    border: 2px solid #4ecdc4;
+    border: 2px solid #6bd6ff; /* 颜色与主标题一致 */
     background: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
+    box-shadow: 0 0 20px rgba(107, 214, 255, 0.5); /* 颜色与主标题一致 */
     position: relative;
 }
 
@@ -251,7 +251,7 @@
 
 .ctrl-btn {
     background: rgba(0, 0, 0, 0.7);
-    border: 1px solid #4ecdc4;
+    border: 1px solid #6bd6ff; /* 颜色与主标题一致 */
     color: #fff;
     padding: 0.5rem 1rem;
     border-radius: 5px;
@@ -264,7 +264,7 @@
 }
 
 .ctrl-btn:hover {
-    background: #4ecdc4;
+    background: #6bd6ff; /* 颜色与主标题一致 */
     color: #000;
 }
 
@@ -275,7 +275,7 @@
     left: 2rem; /* 从 right 改为 left */
     width: 300px;
     background: rgba(0,0,0,0.8);
-    border: 1px solid #4ecdc4;
+    border: 1px solid #6bd6ff; /* 颜色与主标题一致 */
     border-radius: 10px;
     font-family: 'Courier New', monospace;
     color: #fff;
@@ -293,7 +293,7 @@
 .led-indicator {
     width: 12px;
     height: 12px;
-    background: #4ecdc4;
+    background: #6bd6ff; /* 颜色与主标题一致 */
     border-radius: 50%;
     animation: led-pulse 1s infinite;
 }
@@ -305,7 +305,7 @@
 
 .log-entry {
     margin: 0.5rem 0;
-    color: #4ecdc4;
+    color: #6bd6ff; /* 颜色与主标题一致 */
 }
 
 /* 隐藏默认的文件输入框 */
