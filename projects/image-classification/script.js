@@ -1,7 +1,7 @@
 // 图片缩放控制
 let scale = 1;
 const minScale = 0.5;
-const maxScale = 3;
+        const maxScale = 3;
 
 function zoomIn() {
     if (scale < maxScale) {
@@ -24,7 +24,7 @@ function zoomOut() {
 function updateImageScale() {
     const img = document.getElementById('preview-image');
     const container = document.querySelector('.upload-zone');
-    
+
     // 计算图片和容器的中心点
     const containerRect = container.getBoundingClientRect();
     const imgRect = img.getBoundingClientRect();
@@ -33,14 +33,14 @@ function updateImageScale() {
     const offsetY = (containerRect.height - imgRect.height * scale) / 2;
 
     // 应用缩放和偏移
-    img.style.transform = `
-        translate(${offsetX}px, ${offsetY}px)
-        scale(${scale})
-    `;
-    
+    img.style.transform = '
+    translate(${offsetX}px, ${offsetY}px)
+    scale(${scale})
+    ';
+
     // 更新控制台信息
-    document.getElementById('upload-status').textContent = 
-        `[INFO] 当前缩放: ${(scale * 100).toFixed(1)}%`;
+    document.getElementById('upload-status').textContent =
+            '[INFO] 当前缩放: ${(scale * 100).toFixed(1)}%';
 }
 
 function resetZoom() {
@@ -71,14 +71,14 @@ function handleImageUpload(e) {
 
 // 初始化
 document.addEventListener('DOMContentLoaded', () => {
-    const uploadZone = document.querySelector('.upload-zone');
+        const uploadZone = document.querySelector('.upload-zone');
     const input = document.querySelector('#image-upload');
     const zoomInBtn = document.getElementById('zoom-in');
     const zoomOutBtn = document.getElementById('zoom-out');
     const resetBtn = document.getElementById('reset');
 
     uploadZone.addEventListener('click', () => input.click());
-    input.addEventListener('change', handleImageUpload);
+        input.addEventListener('change', handleImageUpload);
     zoomInBtn.addEventListener('click', zoomIn);
     zoomOutBtn.addEventListener('click', zoomOut);
     resetBtn.addEventListener('click', resetZoom);
