@@ -1,0 +1,66 @@
+/* 继承主站样式 */
+@import url(../../styles.css);
+
+/* 项目专属样式 */
+.project-nav {
+    background: rgba(0,0,0,0.8);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-link {
+    color: #4ecdc4;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.home-link:hover {
+    text-shadow: 0 0 15px #4ecdc4;
+}
+
+.nav-tags span {
+    background: #ff6b6b30;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    margin-left: 1rem;
+}
+
+.project-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.tech-architecture {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.architecture-diagram {
+    height: 400px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.specs {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.spec-item {
+    background: linear-gradient(45deg, #0f0c29, #302b63);
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.glowing-text {
+    font-size: 2.5em;
+    text-shadow: 0 0 20px #4ecdc4;
+}
