@@ -7,6 +7,8 @@ function zoomIn() {
     if (scale < maxScale) {
         scale += 0.1;
         updateImageScale();
+    } else {
+        document.getElementById('upload-status').textContent = '[INFO] 已达到最大缩放比例';
     }
 }
 
@@ -14,7 +16,15 @@ function zoomOut() {
     if (scale > minScale) {
         scale -= 0.1;
         updateImageScale();
+    } else {
+        document.getElementById('upload-status').textContent = '[INFO] 已达到最小缩放比例';
     }
+}
+
+function updateImageScale() {
+    const img = document.getElementById('preview-image');
+    img.style.transform = `scale(${scale})`;
+    document.getElementById('upload-status').textContent = `[INFO] 当前缩放: ${(scale * 100).toFixed(1)}%`;
 }
 
 function resetZoom() {
@@ -22,16 +32,13 @@ function resetZoom() {
     updateImageScale();
 }
 
-function updateImageScale() {
-    const img = document.getElementById('preview-image');
-    img.style.transform = `scale(${scale})`;
-    document.getElementById('upload-status').textContent = `[INFO] 当前缩放: ${Math.round(scale * 100)}%`;
-}
-
 // 图片上传处理
 function handleImageUpload(e) {
     const file = e.target.files[0];
-    if (!file) return;
+    if (!file || !file.type.startsWith('image/')) {
+        document.getElementById('upload-status').textContent = '[ERROR] 请上传图片文件';
+        return;
+    }
 
     const reader = new FileReader();
     reader.onload = function(event) {
