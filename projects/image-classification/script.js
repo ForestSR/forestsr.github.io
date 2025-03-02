@@ -1,32 +1,47 @@
-// 模型可视化初始化
+// script.js
+// 3D模型可视化
 function initModelVisualization() {
-    const container = document.querySelector('.model-visualization');
+    const canvas = document.querySelector('#model-canvas');
+    const renderer = new THREE.WebGLRenderer({ 
+        canvas,
+        antialias: true,
+        alpha: true
+    });
     
-    // 使用Three.js创建3D网络结构
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, container.offsetWidth/container.offsetHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
-    
-    // 创建神经网络层可视化
+    const camera = new THREE.PerspectiveCamera(75, canvas.offsetWidth/canvas.offsetHeight, 0.1, 1000);
+    camera.position.z = 5;
+
+    // 创建神经网络结构
     const layers = [
-        { nodes: 32, color: 0xff6b6b },
-        { nodes: 64, color: 0x4ecdc4 },
-        { nodes: 128, color: 0x45b7d1 }
+        { nodes: 5, color: 0xff6b6b, radius: 0.3 },
+        { nodes: 3, color: 0x4ecdc4, radius: 0.2 },
+        { nodes: 1, color: 0x45b7d1, radius: 0.4 }
     ];
 
     layers.forEach((layer, i) => {
-        const geometry = new THREE.SphereGeometry(0.2);
-        const material = new THREE.MeshBasicMaterial({ color: layer.color });
-        for(let j=0; j<layer.nodes; j++){
-            const sphere = new THREE.Mesh(geometry, material);
-            sphere.position.set(
-                i*2 - layers.length,
-                j - layer.nodes/2,
-                0
-            );
-            scene.add(sphere);
+        const angleStep = (Math.PI * 2) / layer.nodes;
+        for(let j = 0; j < layer.nodes; j++) {
+            const geometry = new THREE.SphereGeometry(layer.radius);
+            const material = new THREE.MeshPhongMaterial({ 
+                color: layer.color,
+                emissive: layer.color,
+                emissiveIntensity: 0.3
+            });
+            const node = new THREE.Mesh(geometry, material);
+            
+            node.position.x = i * 2 - layers.length;
+            node.position.y = Math.cos(angleStep * j) * 1.5;
+            node.position.z = Math.sin(angleStep * j) * 1.5;
+            
+            scene.add(node);
         }
     });
+
+    // 添加灯光
+    const light = new THREE.PointLight(0xffffff, 1);
+    light.position.set(0, 0, 5);
+    scene.add(light);
 
     // 动画循环
     function animate() {
@@ -41,24 +56,39 @@ function initModelVisualization() {
 document.addEventListener('DOMContentLoaded', () => {
     initModelVisualization();
     
-    // 图片上传处理
-    document.getElementById('image-upload').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        
-        reader.onload = function(event) {
-            const img = new Image();
-            img.src = event.target.result;
-            img.onload = () => {
-                // 此处添加模型预测逻辑
-                document.querySelector('.prediction-result').innerHTML = `
-                    <div class="prediction">
-                        <div class="confidence" style="width: 85%">飞机 85%</div>
-                        <div class="confidence" style="width: 70%">鸟类 70%</div>
-                    </div>
-                `;
-            }
-        }
-        reader.readAsDataURL(file);
+    // 动态数字增长
+    document.querySelectorAll('.spec-value').forEach(element => {
+        const target = parseInt(element.dataset.target);
+        let current = 0;
+        const interval = setInterval(() => {
+            element.textContent = current.toFixed(current > 100 ? 1 : 0);
+            if(current >= target) clearInterval(interval);
+            current += target / 50;
+        }, 20);
     });
+
+    // 图片上传交互
+    const uploadZone = document.querySelector('.upload-zone');
+    const input = document.querySelector('#image-upload');
+
+    uploadZone.addEventListener('click', () => input.click());
+    input.addEventListener('change', handleImageUpload);
 });
+
+function handleImageUpload(e) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+        // 显示预览
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = () => {
+            // 模拟预测结果
+            document.querySelector('.predicted-class').textContent = '飞机';
+            document.querySelector('.confidence-value').textContent = '92.3%';
+            document.querySelector('.confidence-bar').style.width = '92.3%';
+        }
+    }
+    reader.readAsDataURL(file);
+}
