@@ -27,6 +27,17 @@ const cursorTrail = document.querySelector('.cursor-trail');
                 cursorCore.style.transform = cursorCore.style.transform.replace(' scale(1.8)', '');
     }, 120);
 
+        // 项目卡片悬停效果
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+
         // 添加波纹效果
     const ripple = document.createElement('div');
         ripple.className = 'click-ripple';
